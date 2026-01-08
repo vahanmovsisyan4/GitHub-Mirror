@@ -3,26 +3,25 @@ name: Mirror to Bitbucket
 on:
   push:
     branches:
-      - main  # change if needed
+      - main
 
 jobs:
   mirror:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
       - name: Configure Git
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
 
-      - name: Add Bitbucket remote using API token
+      - name: Add Bitbucket remote
         run: |
-          git remote add bitbucket https://${{ secrets.BITBUCKET_API_USERNAME }}:${{ secrets.BITBUCKET_API_TOKEN }}@bitbucket.org/USERNAME/REPO.git
+          git remote add bitbucket https://x-bitbucket-api-token-auth:${{ secrets.BITBUCKET_API_TOKEN }}@bitbucket.org/gitmirroringtest44/github-mirror.git
 
-      - name: Push branches and tags to Bitbucket
+      - name: Push all branches and tags
         run: |
           git push bitbucket --all --force
           git push bitbucket --tags --force
