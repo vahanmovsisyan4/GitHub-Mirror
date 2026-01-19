@@ -1,0 +1,50 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "description": "Test Renovate configuration for GitHub-Mirror repository",
+  "timezone": "UTC",
+  "schedule": [
+    "at any time"
+  ],
+  "baseBranches": [
+    "main"
+  ],
+  "rangeStrategy": "pin",
+  "semanticCommits": "enabled",
+  "commitMessagePrefix": "chore(deps):",
+  "prConcurrentLimit": 5,
+  "automerge": false,
+  "assignees": [
+    "vahanmovsisyan4"
+  ],
+  "reviewers": [
+    "vahanmovsisyan4"
+  ],
+  "labels": [
+    "dependencies",
+    "renovate"
+  ],
+  "dependencyDashboard": true,
+  "dependencyDashboardTitle": "📦 Renovate Dashboard - Test Setup",
+  "packageRules": [
+    {
+      "description": "Group all non-major dependencies",
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "groupName": "all non-major dependencies"
+    },
+    {
+      "description": "Separate PRs for major updates",
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "groupName": null
+    }
+  ],
+  "prCreation": "immediate",
+  "rebaseWhen": "auto"
+}
